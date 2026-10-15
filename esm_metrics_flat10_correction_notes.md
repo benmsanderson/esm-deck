@@ -135,3 +135,11 @@ Figs. 3, 5, 6 and the schematic figures were not changed, so their committed ima
 * **Fig. 13:** in the tPW–TNZ plane, CNRM, GISS, CESM2 and UKESM lie outside the highest-density region holding 99 % of
   each SCM ensemble (KDE). The "99th percentile" statement holds.
 * **Figs. 11 and 12** do not use ESM ZEC, tPW or TR0 (confirmed by B. Sanderson).
+
+* **Common baseline (decided 2026-10-15):** T100yr now uses the same regression-estimated esm-piControl baseline as TR0,
+  replacing cn0 everywhere in the notebook. T100yr changes by at most 0.06 K: ACCESS 1.74, CESM2 1.89, GFDL 1.44,
+  GISS 1.62, NorESM 1.16, MPI 1.51, CNRM 1.73, UKESM 2.51, UVic 1.86, HadCM3 1.53 K. ZEC, TNZ, TR1000 and tPW do not
+  depend on the baseline. Text numbers affected: the ESM T100yr range becomes 1.2–2.5 K; the mean T1000PgC − T100yr
+  offset becomes 0.11 K (five same-version models; published 0.12 K); the T + ZEC90 difference becomes < 0.01 K.
+  Figures that plot ESM temperatures on this baseline also shift slightly: Fig. 3a, Fig. 6d (now saved as
+  `images/flat10_1pct_comparison.*`), Fig. 9, Fig. 10 and the TCRE-normalised plume figure (`images/T_vs_CE_plumes_flatcdr.png`).

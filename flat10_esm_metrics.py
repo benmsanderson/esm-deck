@@ -10,9 +10,10 @@ Two versions of each metric are computed:
                (year 1), while T100yr is referenced to a separate 20/10-year baseline
                (cn0). The two offsets do not cancel in ZEC50/90/100 or TR0, leaving a
                term of single-year variability (up to ~0.2 K) in those metrics.
-  corrected  - ZEC = mean(flat10-zec window) - mean(flat10 years 90-109) exactly (no
-               baseline term). TR0 is years 300-319 of flat10-cdr relative to esm-piControl,
-               estimated as the intercept of a linear fit to flat10 years 0-29.
+  corrected  - every temperature (T100yr, TR0) is relative to esm-piControl, estimated as
+               the intercept of a linear fit to flat10 years 0-29, so
+               ZEC = mean(flat10-zec window) - mean(flat10 years 90-109) exactly (no
+               baseline term). TR0 uses flat10-cdr years 300-319.
                tPW uses the centred-window index (the legacy value is 5 years early
                because the 'valid' moving average was not re-centred).
 
@@ -21,7 +22,8 @@ esm-flat10-cdr branch at year 100 and are appended to flat10 years 0-99, so
 'years 140-159' means 40-59 years after emissions cease.
 
 Metrics (20-year means unless stated):
-  T100yr  flat10 years 90-109 minus cn0, cn0 = 2*mean(yrs 0-19) - mean(yrs 10-29)
+  T100yr  flat10 years 90-109 minus the baseline: legacy cn0 = 2*mean(yrs 0-19) - mean(yrs 10-29);
+          corrected: esm-piControl estimated as the intercept of a linear fit to flat10 years 0-29
   ZEC50   flat10-zec years 140-159 minus flat10 years 90-109
   ZEC90   flat10-zec years 180-199 minus flat10 years 90-109
   ZEC100  flat10-zec years 190-209 minus flat10 years 90-109
@@ -97,9 +99,12 @@ def wmean(x, a, b):
 def metrics(ts, legacy):
     f, z, c = ts['flat10'], ts['flat10-zec'], ts['flat10-cdr']
     cn0 = 2 * f[:20].mean() - f[10:30].mean()
-    # legacy: zec/cdr series referenced to flat10 year 1; corrected: to cn0
-    ref = f[1] if legacy else cn0
-    t100 = wmean(f, 90, 110) - cn0
+    pi = linregress(np.arange(30), f[:30]).intercept
+    # legacy: T100yr referenced to cn0 but zec/cdr series to flat10 year 1;
+    # corrected: everything referenced to the regression-estimated esm-piControl
+    base = cn0 if legacy else pi
+    ref = f[1] if legacy else pi
+    t100 = wmean(f, 90, 110) - base
     m = {'T100yr': t100}
     for name, (a, b) in {'ZEC50': (140, 160), 'ZEC90': (180, 200), 'ZEC100': (190, 210)}.items():
         m[name] = wmean(z, a, b) - ref - t100
@@ -113,7 +118,6 @@ def metrics(ts, legacy):
     if legacy:
         m['TR0'] = wmean(c, 290, 310) - ref
     else:
-        pi = linregress(np.arange(30), f[:30]).intercept
         if c is None or len(c) < 300:
             m['TR0'] = np.nan
         elif len(c) >= 320:
