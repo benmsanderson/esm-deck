@@ -137,7 +137,7 @@ def main(root='.'):
     print('\nCorrected (common baseline):')
     print(corrected.round(2).to_string())
     corrected.index.name = 'model'
-    corrected.to_csv(os.path.join(root, 'esm_metrics_flat10_corrected.csv'), float_format='%.3f')
+    corrected.to_csv(os.path.join(root, 'esm_metrics_flat10_corrected.csv'), float_format='%.6f')
 
 
 if __name__ == '__main__':
