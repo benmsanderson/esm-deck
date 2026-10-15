@@ -124,9 +124,11 @@ Figs. 3, 5, 6 and the schematic figures were not changed, so their committed ima
 * **Abstract:** "about 40 %", based on the five same-version models (41 %).
 * **TNZ:** keep the calculation and correct the text.
 * **TR0:** keep the text's concept (years 301–320 relative to esm-piControl). esm-piControl is estimated as the
-  intercept of a linear fit to esm-flat10 years 0–29. CESM2, GISS and UKESM esm-flat10-cdr runs end in year 299,
-  so they have no TR0. Corrected TR0: ACCESS 0.17, GFDL −0.06, NorESM −0.24, MPI −0.32, CNRM 0.31,
-  UVic 0.25, HadCM3 −0.17 K.
+  intercept of a linear fit to esm-flat10 years 0–29. Corrected TR0: ACCESS 0.17, GFDL −0.06, NorESM −0.24, MPI −0.32,
+  CNRM 0.31, UVic 0.25, HadCM3 −0.17 K. The CESM2, GISS and UKESM esm-flat10-cdr runs end in year 299. For these,
+  TR0 is approximated from years 290–299 minus T100yr × 45 PgC (the mean cumulative emissions still present in that
+  window). Validated on the seven full-length runs: bias 0.00 K, RMSE 0.07 K, max error 0.13 K. Values: CESM2 0.43,
+  GISS −0.42, UKESM 0.31 K (flagged as approximate in Table 2). No new simulations are requested.
 * **SCM ZEC90 vs ZEC100:** the SCM esm-1pct-brch-1000PgC metrics provide ZEC50 and ZEC100 only. Fig. 7b now
   compares T + ZEC100 on both sides. The 1pct minus flat10 differences are FaIR +0.01 K, MAGICC +0.08 K,
   CICERO-SCM +0.21 K. Fig. 8b,d SCM points were already ZEC100 on both axes; only their labels need correcting.

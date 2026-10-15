@@ -29,8 +29,9 @@ Metrics (20-year means unless stated):
   TNZ     flat10-cdr years 140-159 minus flat10 years 115-134
   TR1000  flat10-cdr years 190-209 minus flat10 years 90-109
   TR0     legacy: flat10-cdr years 290-309 minus T(yr 1)
-          corrected: flat10-cdr years 300-319 minus the regression intercept
-          (no value when the run ends before year 320)
+          corrected: flat10-cdr years 300-319 minus the regression intercept. Runs that end
+          in year 299 use years 290-299 minus T100yr x 45 PgC, the mean cumulative emissions
+          remaining in that window (tested on the 7 full-length runs: bias 0.00 K, RMSE 0.07 K)
 
 Usage:  python flat10_esm_metrics.py [path/to/esm-deck]
 Writes esm_metrics_flat10_corrected.csv next to ESM_data/ and prints both tables.
@@ -51,6 +52,8 @@ MODELS = ['ACCESS-ESM1-5', 'CESM2', 'GFDL-ESM4', 'GISS', 'NorESM2-LM', 'MPI-ESM1
           'CNRM-ESM2-1', 'UKESM', 'UVic-ESCM-2-10', 'HadCM3LC-Bris']
 RENAME = {'TAS_GLOB': 'tas', 'temp_mm_1_5m': 'tas', '__xarray_dataarray_variable__': 'tas'}
 WINDOW = 11
+# mean cumulative emissions (PgC) at the end of esm-flat10-cdr years 290-299: 90, 80, ..., 0
+CUM_290_299 = 45.0
 
 
 def _open(path):
@@ -111,7 +114,12 @@ def metrics(ts, legacy):
         m['TR0'] = wmean(c, 290, 310) - ref
     else:
         pi = linregress(np.arange(30), f[:30]).intercept
-        m['TR0'] = c[300:320].mean() - pi if c is not None and len(c) >= 320 else np.nan
+        if c is None or len(c) < 300:
+            m['TR0'] = np.nan
+        elif len(c) >= 320:
+            m['TR0'] = c[300:320].mean() - pi
+        else:
+            m['TR0'] = c[290:300].mean() - pi - t100 * CUM_290_299 / 1000
     return m
 
 
