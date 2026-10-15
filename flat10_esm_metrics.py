@@ -10,10 +10,11 @@ Two versions of each metric are computed:
                (year 1), while T100yr is referenced to a separate 20/10-year baseline
                (cn0). The two offsets do not cancel in ZEC50/90/100 or TR0, leaving a
                term of single-year variability (up to ~0.2 K) in those metrics.
-  corrected  - every temperature is referenced to the same baseline cn0, so
-               ZEC = mean(flat10-zec window) - mean(flat10 years 90-109) exactly.
-               tPW also uses the centred-window index (the legacy value is 5 years
-               early because the 'valid' moving average was not re-centred).
+  corrected  - ZEC = mean(flat10-zec window) - mean(flat10 years 90-109) exactly (no
+               baseline term). TR0 is years 300-319 of flat10-cdr relative to esm-piControl,
+               estimated as the intercept of a linear fit to flat10 years 0-29.
+               tPW uses the centred-window index (the legacy value is 5 years early
+               because the 'valid' moving average was not re-centred).
 
 Indexing: years are 0-based from the start of esm-flat10. esm-flat10-zec and
 esm-flat10-cdr branch at year 100 and are appended to flat10 years 0-99, so
@@ -27,11 +28,13 @@ Metrics (20-year means unless stated):
   tPW     year of peak 11-yr running-mean tas in flat10-cdr minus 150
   TNZ     flat10-cdr years 140-159 minus flat10 years 115-134
   TR1000  flat10-cdr years 190-209 minus flat10 years 90-109
-  TR0     flat10-cdr years 290-309 minus cn0
+  TR0     legacy: flat10-cdr years 290-309 minus T(yr 1)
+          corrected: flat10-cdr years 300-319 minus the regression intercept
+          (no value when the run ends before year 320)
 
 Usage:  python flat10_esm_metrics.py [path/to/esm-deck]
 Writes esm_metrics_flat10_corrected.csv next to ESM_data/ and prints both tables.
-Requires numpy, pandas, xarray, netCDF4.
+Requires numpy, pandas, scipy, xarray, netCDF4.
 """
 import os
 import sys
@@ -40,6 +43,7 @@ import warnings
 import numpy as np
 import pandas as pd
 import xarray as xr
+from scipy.stats import linregress
 
 warnings.filterwarnings("ignore")
 
@@ -81,7 +85,7 @@ def load(root, model):
 
 def wmean(x, a, b):
     # windows truncated by a short run are kept if at least 10 years remain
-    # (TR0 for CESM2 and GISS, whose flat10-cdr runs end at year 299)
+    # (legacy TR0 for CESM2, GISS and UKESM, whose flat10-cdr runs end at year 299)
     if x is None or len(x) < a + 10:
         return np.nan
     return x[a:b].mean()
@@ -103,7 +107,11 @@ def metrics(ts, legacy):
         m['tPW'] = np.nan
     m['TNZ'] = wmean(c, 140, 160) - wmean(f, 115, 135)
     m['TR1000'] = wmean(c, 190, 210) - wmean(f, 90, 110)
-    m['TR0'] = wmean(c, 290, 310) - ref
+    if legacy:
+        m['TR0'] = wmean(c, 290, 310) - ref
+    else:
+        pi = linregress(np.arange(30), f[:30]).intercept
+        m['TR0'] = c[300:320].mean() - pi if c is not None and len(c) >= 320 else np.nan
     return m
 
 
