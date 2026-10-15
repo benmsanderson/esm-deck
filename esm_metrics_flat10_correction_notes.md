@@ -92,3 +92,29 @@ Effects are judged with the corrected values in `esm_metrics_flat10_corrected.cs
 
 Unaffected: T100yr/TCRE values and the TCRE comparison (Sect. 3.2, Fig. 6), TNZ, TR1000, all carbon-cycle results
 (Figs. 4d–l, 5), and all SCM values.
+
+## Notebook changes and regenerated figures
+
+Changes to `flat10_figures_paper.ipynb` (re-executed end to end; numpy 1.26, pandas 2.1, xarray 2024.3, matplotlib 3.9):
+
+* **Metrics (cell 38):** ZEC50/90/100 and TR0 are referenced to cn0, the same baseline as T100yr. tPW adds `window//2` to the
+  peak index. The printed metrics now match `esm_metrics_flat10_corrected.csv` exactly.
+* **Fig. 4 (cell 19):** peak markers in the cdr column (GMST, CO2, land, ocean) are moved to the centre year of the moving
+  average (+5 years). The text statements on carbon-cycle peak timing still hold. Peak years, corrected, with net zero = 150:
+  CO2 125–138 (all before net zero); ocean sink 175–186 (all after); land sink 139–146 for ACCESS, UVic and HadCM3 (before)
+  and 160–174 for the others (after).
+* **Fig. 7a (cell 41):** the flat10 multi-model-mean point used ZEC100 while the individual models used ZEC90. Both now use ZEC90.
+* **Fig. 10 (cell 46):** dotted line changed from + ZEC100 to + ZEC90, matching the caption and text (resolves B5).
+* `SCM_data/timeseries/flat10_magicc.nc` → `flat10_MAGICC.nc` (the notebook only ran on case-insensitive file systems).
+* Figs. 7, 9 and 13 were previously displayed but not saved. Save calls were added.
+
+| Paper figure | File | Changed? |
+|---|---|---|
+| Fig. 4 | `images/flat10_ESM_results_panel.{pdf,jpg}` | yes: peak markers |
+| Fig. 7 | `images/flat10_zec_tcre_comparison.{pdf,jpg}` (new) | yes: ESM ZEC, mean point |
+| Fig. 8 | `images/flat10_SCM_ESM_metric_correlations.{pdf,jpg}` | yes: ESM ZEC points and fits (ESM ZEC50 slope 0.59, ZEC90 slope 0.57) |
+| Fig. 9 | `images/flat10_zecmip_timeseries.{pdf,jpg}` (new) | no: saved for completeness |
+| Fig. 10 | `images/temp_vs_cumulative_emissions_panel.png` | yes: dotted ZEC90 lines |
+| Fig. 13 | `images/flat10_metric_pairplot.{pdf,jpg}` (new) | yes: ESM ZEC, tPW, TR0 |
+
+Figs. 3, 5, 6 and the schematic figures were not changed, so their committed image files were left as they were.
