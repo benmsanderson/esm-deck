@@ -6,8 +6,8 @@
   published values apart from the transcription errors listed below.
 * **corrected**: the values written to `esm_metrics_flat10_corrected.csv` and used by `flat10_figures_paper.ipynb`.
 
-This branch implements the *light* corrigendum: only errors that change a published number, statement or visible
-figure are corrected. A fuller version is kept on the `flat10-corrigendum-full` branch. It also moves all
+This branch holds the code and data for the corrigendum. The corrigendum itself is limited to errors a reader would
+lift from the paper (see below). A fuller version is kept on the `flat10-corrigendum-full` branch. It also moves all
 temperatures to a regression-estimated pre-industrial baseline and tidies further method wording.
 
 ## Errors
@@ -57,22 +57,24 @@ zec and cdr runs branch at year 100):
 
 ## Corrigendum contents
 
+The corrigendum is limited to what a reader quoting, citing or reproducing the paper would otherwise get wrong:
+
 * **Table 2:** the values above, a new footnote for the approximated TR0, and a caption that defines ZEC as a
-  difference of 20-year means.
+  difference of 20-year means (the published "between years 100 and 150" wording invites single-year differences).
 * **Text:**
   * Abstract: ZEC50 reduction of about 40 % instead of 30 %.
-  * Sect. 2.1.4: TNZ definition (flat10 at 1250 PgC, not 1.25 × TCRE), and tPW smoothing "20-year" → "11-year".
-  * Sect. 3.1: 4 of 10 ESMs peak before net zero, not "most"; UKESM added to the warmer and HadCM3 to the cooler models at year 300.
-  * Sect. 3.2.2: ∼ 40 % (not ∼ 25 %) smaller ESM ZEC; T + ZEC90 difference of 0.01 K (not 0.05 K).
-  * Sect. 3.2.3: year-300 range −0.4 to +0.5 K; GISS and UKESM no longer described as peaking before net zero.
-* **Figures:** 7, 8, 10 and 13 are replaced.
+  * Sect. 2.1.4: TNZ definition (flat10 at 1250 PgC, not 1.25 × TCRE) and tPW smoothing ("20-year" → "11-year"). Following
+    the published wording would give TNZ values off by up to 0.16 K and tPW off by up to 6 years.
+  * Sect. 3.1: 4 of 10 ESMs peak before net zero, not "most".
+  * Sect. 3.2.2: ∼ 40 % (not ∼ 25 %) smaller ESM ZEC.
+  * Sect. 3.2.3: delete "such that we see peak warming significantly before net zero".
+* **Figures:** 8 and 13 are replaced.
 
-Not corrected in the light version (no result changes):
+Fixed in the code but not part of the corrigendum (no quotable result changes):
 
-* Fig. 4 peak markers (fixed in the code: they are now at the centre year of the window).
-* The SCM ZEC90/ZEC100 mix in Fig. 7b.
-* "21-year" window wording.
-* The "Table 1" cross-reference slip.
+* Figs. 4 (peak markers), 7 and 10 (regenerated here with corrected values).
+* The year-300 warmer/cooler lists, the "0.05 K" T + ZEC90 difference and the year-300 range.
+* The SCM ZEC90/ZEC100 mix in Fig. 7b, "21-year" window wording, and the "Table 1" cross-reference slip.
 
 ## Notebook
 
