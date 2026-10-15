@@ -142,4 +142,5 @@ Figs. 3, 5, 6 and the schematic figures were not changed, so their committed ima
   depend on the baseline. Text numbers affected: the ESM T100yr range becomes 1.2–2.5 K; the mean T1000PgC − T100yr
   offset becomes 0.11 K (five same-version models; published 0.12 K); the T + ZEC90 difference becomes < 0.01 K.
   Figures that plot ESM temperatures on this baseline also shift slightly: Fig. 3a, Fig. 6d (now saved as
-  `images/flat10_1pct_comparison.*`), Fig. 9, Fig. 10 and the TCRE-normalised plume figure (`images/T_vs_CE_plumes_flatcdr.png`).
+  `images/flat10_1pct_comparison.*`), Fig. 9, Fig. 10 and Fig. 11 (`images/T_vs_CE_plumes_flatcdr.png`, TCRE-normalised;
+  curves shift by < 0.04 of TCRE, visually unchanged, and the ±10 % spread statement in Sect. 3.7 holds).
