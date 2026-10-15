@@ -144,3 +144,20 @@ Figs. 3, 5, 6 and the schematic figures were not changed, so their committed ima
   Figures that plot ESM temperatures on this baseline also shift slightly: Fig. 3a, Fig. 6d (now saved as
   `images/flat10_1pct_comparison.*`), Fig. 9, Fig. 10 and Fig. 11 (`images/T_vs_CE_plumes_flatcdr.png`, TCRE-normalised;
   curves shift by < 0.04 of TCRE, visually unchanged, and the ±10 % spread statement in Sect. 3.7 holds).
+
+## Light corrigendum (decided 2026-10-15)
+
+The branch now implements the light corrigendum. The full version, with the harmonised regression baseline and every
+fix, is kept on the branch `flat10-corrigendum-full`.
+
+* **Baseline:** all ESM temperatures use the published T100yr baseline (cn0), so T100yr is unchanged (except the
+  UVic transcription error, 1.80 → 1.86). ZEC is still the plain difference of 20-year means.
+* **TR0:** flat10-cdr years 300–319 minus cn0 (CESM2, GISS, UKESM approximated from years 290–299 minus
+  0.045 × T100yr). Values: ACCESS 0.18, CESM2 0.49, GFDL −0.04, GISS −0.42, NorESM −0.22, MPI −0.33, CNRM 0.31,
+  UKESM 0.31, UVic 0.26, HadCM3 −0.18 K. Year-300 range −0.4 to +0.5 K.
+* **tPW:** 11-year running mean, centred, as in the full version; the text's "20-year" becomes "11-year".
+* **Fig. 7b:** reverted to the published SCM comparison; it is not part of the light corrigendum.
+* **Replaced figures:** 7, 8, 10 and 13. Figs. 3, 4, 6, 9 and 11 are not replaced.
+* **Text corrections:** abstract (about 40 %), TNZ definition and tPW smoothing (Sect. 2.1.4), peak-warming count and
+  year-300 warmer/cooler lists (Sect. 3.1), the ~25 % and 0.05 K statements (Sect. 3.2.2), the year-300 range and the
+  Fig. 13 peak-timing sentence (Sect. 3.2.3), and the Table 2 caption.
