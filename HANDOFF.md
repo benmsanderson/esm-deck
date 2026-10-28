@@ -21,14 +21,14 @@ Details, corrected values and the method are in `esm_metrics_flat10_correction_n
 
 | Item | Status |
 | --- | --- |
-| Corrected code, metrics, figures | Done; [PR #15](https://github.com/benmsanderson/esm-deck/pull/15) (draft, branch `flat10-corrigendum-light`) |
+| Corrected code, metrics, figures | Done; [PR #15](https://github.com/benmsanderson/esm-deck/pull/15) merged into `main` on 2026-10-28 |
 | Corrigendum text | Drafted: `corrigendum/corrigendum_text.md` (Table 2, six text edits, Figs. 7, 8, 13) |
 | Word version of the paper with the corrigendum as tracked changes | Reproducible with `corrigendum/docx_build/build.sh` |
 | Ensemble-distribution analysis for co-authors (e.g. Charlie Koven, for IPCC) | `corrigendum/distribution_shifts.md` + `.png` + `.py` |
-| Email to co-authors | Drafted, scope updated: `corrigendum/email_drafts.md`; not known to be sent |
+| Email to co-authors | Circulated; no further comments as of 2026-10-28 |
 | Reply to Roland | Drafted in `corrigendum/email_drafts.md`; not known to be sent |
 | GMD submission | Not started. Corrigenda must reach Copernicus within 3 years of publication (by Sept 2028); only one corrigendum per article in that window, so bundle everything. Email the GMD editorial office / handling editor first. |
-| Zenodo archive of the corrected code | Not started; the corrigendum text has a placeholder DOI |
+| Zenodo archive of the corrected code | Done: GitHub release `corrigendum` (commit `ea557e2`), https://doi.org/10.5281/zenodo.23736830; cited in the corrigendum text |
 
 ## Decisions taken (by Ben)
 
@@ -48,7 +48,8 @@ Details, corrected values and the method are in `esm_metrics_flat10_correction_n
 
 | Branch | Content |
 | --- | --- |
-| `flat10-corrigendum-light` | **Current.** PR #15. Single clean set of changes on top of `main`, plus this handoff |
+| `main` | **Current.** Contains the corrected code (PR #15) and the `corrigendum` release |
+| `flat10-corrigendum-light` | Branch of PR #15 (merged); reused for follow-up changes |
 | `flat10-corrigendum-full` | Fuller alternative: all temperatures on a regression-estimated pre-industrial baseline and every wording fix. Kept for reference. |
 | `flat10-corrigendum-esm-metrics` | PR #14, superseded by #15; can be closed |
 | `claude/laughing-cray-2vabfq` | Stale original working branch; can be deleted |
@@ -68,11 +69,10 @@ Details, corrected values and the method are in `esm_metrics_flat10_correction_n
 
 ## Open items
 
-1. Circulate the corrigendum to co-authors (email draft ready). Modelling groups should check their rows.
+1. Co-authors have seen the corrigendum; no further comments as of 2026-10-28.
 2. Send the reply to Roland, if not already done.
 3. Email the GMD editorial office, then submit the corrigendum.
-4. Merge PR #15 and create a Zenodo release; put the DOI in the corrigendum's code availability statement.
-5. Close PR #14 and delete the stale `claude/laughing-cray-2vabfq` branch.
+4. Close PR #14 and delete the stale `claude/laughing-cray-2vabfq` branch.
 
 ## Known caveats
 
