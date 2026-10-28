@@ -1,6 +1,6 @@
 # Email drafts
 
-Status unknown at handoff (2026-10-28): it is not recorded whether either draft has been sent. Check with Ben before reusing.
+Status (2026-10-28): the corrigendum has been circulated to co-authors, with no further comments. It is not recorded whether the reply to Roland has been sent.
 
 ## To co-authors (revised to the current corrigendum scope)
 

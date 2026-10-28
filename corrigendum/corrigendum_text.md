@@ -26,7 +26,7 @@ The corrections strengthen the main conclusions on the Zero Emissions Commitment
 esm-flat10-zec are about 40 % smaller than in the ZECMIP protocol, rather than 30 %. The statement that most ESMs reach
 peak warming before net zero no longer holds; four of the ten ESMs peak before net zero and six after. Because tPW is
 estimated from a single ensemble member, individual values are sensitive to the choice of smoothing window. Corrected
-code and metrics are available at [Zenodo DOI to be added].
+code and metrics are available at https://doi.org/10.5281/zenodo.23736830 (Sanderson, 2026).
 
 ## Corrected Table 2 (ESM rows)
 
@@ -103,4 +103,9 @@ something wrong. These items are fixed in the code but not in the corrigendum:
 
 "The corrected analysis code (flat10_figures_paper.ipynb), a stand-alone script that reproduces both the published and
 corrected ESM metrics from the global-mean output (flat10_esm_metrics.py), and the corrected metrics
-(esm_metrics_flat10_corrected.csv) are archived at [Zenodo DOI to be added]."
+(esm_metrics_flat10_corrected.csv) are archived at https://doi.org/10.5281/zenodo.23736830."
+
+## Reference (to add to the corrigendum)
+
+Sanderson, B. M.: benmsanderson/esm-deck: Corrected ZEC values for corrigendum (corrigendum), Zenodo [code],
+https://doi.org/10.5281/zenodo.23736830, 2026.
