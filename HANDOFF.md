@@ -51,7 +51,7 @@ Details, corrected values and the method are in `esm_metrics_flat10_correction_n
 | `main` | **Current.** Contains the corrected code (PR #15) and the `corrigendum` release |
 | `flat10-corrigendum-light` | Branch of PR #15 (merged); reused for follow-up changes |
 | `flat10-corrigendum-full` | Fuller alternative: all temperatures on a regression-estimated pre-industrial baseline and every wording fix. Kept for reference. |
-| `flat10-corrigendum-esm-metrics` | PR #14, superseded by #15; can be closed |
+| `flat10-corrigendum-esm-metrics` | PR #14, closed as superseded by #15; branch can be deleted |
 | `claude/laughing-cray-2vabfq` | Stale original working branch; can be deleted |
 
 ## How to reproduce
@@ -72,7 +72,7 @@ Details, corrected values and the method are in `esm_metrics_flat10_correction_n
 1. Co-authors have seen the corrigendum; no further comments as of 2026-10-28.
 2. Send the reply to Roland, if not already done.
 3. Email the GMD editorial office, then submit the corrigendum.
-4. Close PR #14 and delete the stale `claude/laughing-cray-2vabfq` branch.
+4. Delete the stale `claude/laughing-cray-2vabfq` and `flat10-corrigendum-esm-metrics` branches (not possible from the Claude session; use the GitHub branches page).
 
 ## Known caveats
 
